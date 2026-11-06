@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  nutritrack:
+    name: NutriTrack – lint, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: NutriTrack/calorie-tracker
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: NutriTrack/calorie-tracker/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      # No Supabase secrets needed: the app builds in demo mode.
+      - run: npm run build
+
+  udp:
+    name: UDP protokol – syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m py_compile "UDP protokol/server.py" "UDP protokol/tester.py"

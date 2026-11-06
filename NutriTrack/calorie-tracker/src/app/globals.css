@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-app: #fafafa;
+  --color-app-fg: #0a0a0a;
+  --color-card: #ffffff;
+  --color-muted: #737373;
+  --color-border: #e5e5e5;
+  --color-track: #f0f0f0;
+
+  --color-accent: #10b981;
+  --color-accent-strong: #059669;
+  --color-warn: #f59e0b;
+  --color-over: #ef4444;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --color-app: #fafafa;
+  --color-app-fg: #0a0a0a;
+  --color-card: #ffffff;
+  --color-muted: #737373;
+  --color-border: #e5e5e5;
+  --color-track: #f0f0f0;
+  --color-accent: #00A550;
+  --color-accent-strong: #00693E;
+  --color-warn: #ffc75f;
+  --color-over: #c34a36;
+  --color-macro-protein: #845ec2;
+  --color-macro-fat: #d65db1;
+  --color-macro-carbs: #ff6f91;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-app: #0a0a0a;
+  --color-app-fg: #fafafa;
+  --color-card: #171717;
+  --color-muted: #a3a3a3;
+  --color-border: #262626;
+  --color-track: #262626;
+  --color-accent: #00A550;
+  --color-accent-strong: #00693E;
+  --color-warn: #ffc75f;
+  --color-over: #c34a36;
+  --color-macro-protein: #845ec2;
+  --color-macro-fat: #d65db1;
+  --color-macro-carbs: #ff6f91;
+}
+
+html,
+body {
+  background: var(--color-app);
+  color: var(--color-app-fg);
+  overscroll-behavior-y: none;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 16px;
+}
+
+@layer utilities {
+  .bg-app { background-color: var(--color-app); }
+  .bg-card { background-color: var(--color-card); }
+  .text-app { color: var(--color-app-fg); }
+  .text-muted { color: var(--color-muted); }
+  .border-app { border-color: var(--color-border); }
+
+  .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 1rem); }
+  .pt-safe { padding-top: max(env(safe-area-inset-top), 1rem); }
+}
